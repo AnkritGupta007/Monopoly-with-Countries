@@ -138,15 +138,22 @@ public class DefaultScene {
 		grid.add(goBox, 4, 4);
 		
 		VBox currentUserBox = new VBox(10);
-		Text currentUserDisplay = new Text("Current Player: ");
+		Text currentUserDisplay = new Text("User: ");
 		Text currentBalanceDisplay = new Text("Cash: ");
-		Text nextUserDisplay = new Text("Next Player: ");
-		Button checkPropertiesBtn = new Button("Properties");
 		currentUserBox.setAlignment(Pos.TOP_LEFT);
 		currentUserBox.getChildren().add(currentUserDisplay);
 		currentUserBox.getChildren().add(currentBalanceDisplay);
+		
+		Button checkPropertiesBtn = new Button("Properties");
 		currentUserBox.getChildren().add(checkPropertiesBtn);
-		currentUserBox.getChildren().add(nextUserDisplay);
+		checkPropertiesBtn.setOnAction(new EventHandler <ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				SceneController.changeScene(UserPropertyListScene.getScene());
+				
+			}
+		});
 		grid.add(currentUserBox, 1, 1);
 		
 		HBox buyB = new HBox();
@@ -160,19 +167,13 @@ public class DefaultScene {
 		rollDiceB.setAlignment(Pos.BOTTOM_CENTER);
 		rollDiceB.getChildren().add(rollDice);
 		grid.add(rollDiceB, 2, 3);
-		
-		GameManager gm = GameManager.getInstance();
-		currentUserDisplay.setText("Current Player: " + GameManager.currentPlayer.getName());
-		nextUserDisplay.setText("Next Player: " + gm.getNextPlayer().getName());
-		
 		rollDice.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent arg0) {
 				GameManager gm = GameManager.getInstance();
+				currentUserDisplay.setText("User: " + GameManager.currentPlayer.getName());
 				gm.executeTurn(GameManager.currentPlayer);
-				currentUserDisplay.setText("Current Player: " + GameManager.currentPlayer.getName());
-				nextUserDisplay.setText("Next Player: " + gm.getNextPlayer().getName());
 			}
 			
 		});
