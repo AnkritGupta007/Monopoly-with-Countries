@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.text.*;
+import logic.GameManager;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class SellConfirmationScene {
 
 			@Override
 			public void handle(ActionEvent event) {
-				SceneController.changeScene(UserPropertyListScene.getScene());
+				GameManager.changeScene(UserPropertyListScene.getScene());
 			}
 
 		});

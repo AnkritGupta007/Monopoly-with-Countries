@@ -7,6 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.*;
 import javafx.scene.control.Alert.*;
 import javafx.scene.layout.*;
+import logic.GameManager;
+import logic.Player;
+import logic.Property;
 import javafx.scene.input.*;
 
 
@@ -27,21 +30,16 @@ public class UserPropertyListScene {
 		tableView.getColumns().add(column2);
 		tableView.getColumns().add(column3);
 
-		try {
-			List<Property> properties = Player.getPropertyList;
-			for(Property p : properties) {
-				tableView.getItems().add(p);
-			}
-		} catch (FileNotFoundException e) {
-			Alert alert = new Alert(AlertType.ERROR,"Error Reading User File", ButtonType.OK);
-			alert.showAndWait();
+		List<Property> properties = GameManager.currentPlayer.getOwnedProperties();
+		for(Property p : properties) {
+			tableView.getItems().add(p);
 		}
 		tableView.setPlaceholder(new Label("No rows to display."));
 		
 		//NOT FINISHED OR WORKING, DOUBLE CLICK EXAMPLE
 		tableView.setOnMouseClicked((MouseEvent event) -> {
 			if(event.getButton().equals(MouseButton.PRIMARY)&& event.getClickCount() == 2) {
-				SceneController.changeScene(SellConfirmationScene.getScene());
+				GameManager.changeScene(SellConfirmationScene.getScene());
 			}
 		});
 		

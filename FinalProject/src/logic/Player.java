@@ -86,11 +86,8 @@ public class Player {
 		this.ownedProperties = ownedProperties;
 	}
 	
-	
-
-	
-	
-	
-	
+	public void addProperty(Property p) {
+		this.ownedProperties.add(p);
+	}	
 
 }

@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class GameManager extends Application {
-	Board board = Board.getInstance();
+	static Board board = Board.getInstance();
 	public final static int GO_PAY_AMOUNT = 200;
 	public static List<Player> uList = new ArrayList<Player>();
 	static GameManager gm = new GameManager();
@@ -19,6 +19,7 @@ public class GameManager extends Application {
 
 	public static void main(String[] args) {
 		Player p1 = new Player("RJ", 500);
+		p1.addProperty((Property)board.pList.get(7));
 		Player p2 = new Player("Ankrit", 500);
 		uList.add(p1);
 		uList.add(p2);
