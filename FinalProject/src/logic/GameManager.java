@@ -1,4 +1,5 @@
 package logic;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +22,9 @@ public class GameManager extends Application {
 		Player p2 = new Player("Ankrit", 500);
 		uList.add(p1);
 		uList.add(p2);
-		currentPlayer = uList.get(0);
 		
+		currentPlayer = uList.get(0);
+
 		launch(args);
 	}
 
@@ -45,7 +47,6 @@ public class GameManager extends Application {
 	public int numDoubles = 0;
 
 	public void executeTurn(Player p) {
-		setupScreen();
 		int[] dice = board.rollDice();
 		if (!p.isInJail()) {
 			int distance = dice[0] + dice[1];
@@ -70,18 +71,24 @@ public class GameManager extends Application {
 			}
 		}
 		this.numDoubles = 0;
-		getNextPlayer();
+		setNextPlayer(getNextPlayer());
 	}
 
-	private void getNextPlayer() {
+	public Player getNextPlayer() {
 		int index = uList.indexOf(currentPlayer);
-		currentPlayer = uList.get(index++%uList.size());
-	}
-
-	private void setupScreen() {
-		
+		if (index + 1 < uList.size()) {
+			index++;
+		} else {
+			index = 0;
+		}
+		Player nextPlayer = uList.get(index);
+		return nextPlayer;
 	}
 	
+	public void setNextPlayer(Player p) {
+		currentPlayer = p;
+	}
+
 	public static GameManager getInstance() {
 		return gm;
 	}
