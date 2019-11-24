@@ -179,18 +179,33 @@ public class DefaultScene {
 			public void handle(ActionEvent arg0) {
 				GameManager gm = GameManager.getInstance();
 				gm.executeTurn(GameManager.currentPlayer);
+			}
+			
+		});
+		
+		HBox endB = new HBox();
+		Button end = new Button("End Turn");
+		endB.setAlignment(Pos.BOTTOM_CENTER);
+		endB.getChildren().add(end);
+		grid.add(endB, 3, 3);
+		
+		end.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				GameManager gm = GameManager.getInstance();
+				gm.endTurn();
 				currentUserDisplay.setText("Current Player: " + GameManager.currentPlayer.getName());
 				nextUserDisplay.setText("Next Player: " + gm.getNextPlayer().getName());
 			}
 			
 		});
 		
-		
 		HBox sellB = new HBox();
 		Button sell = new Button("Sell");
 		sellB.setAlignment(Pos.BOTTOM_CENTER);
 		sellB.getChildren().add(sell);
-		grid.add(sellB, 3, 3);
+		grid.add(sellB, 4, 3);
 
 		BorderPane bp = new BorderPane();
 		HBox hb = new HBox();

@@ -22,9 +22,9 @@ public class UserPropertyListScene {
 		TableColumn<String, Property> column2 = new TableColumn<>("Fee");
 		TableColumn<String, Property> column3 = new TableColumn<>("Sell Price");
 		
-		column1.setCellValueFactory(new PropertyValueFactory<>("propertyName"));
-		column2.setCellValueFactory(new PropertyValueFactory<>("propertyFee"));
-		column3.setCellValueFactory(new PropertyValueFactory<>("propertyPrice"));
+		column1.setCellValueFactory(new PropertyValueFactory<>("name"));
+		column2.setCellValueFactory(new PropertyValueFactory<>("rent"));
+		column3.setCellValueFactory(new PropertyValueFactory<>("cost"));
 		
 		tableView.getColumns().add(column1);
 		tableView.getColumns().add(column2);

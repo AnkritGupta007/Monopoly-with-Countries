@@ -72,6 +72,9 @@ public class GameManager extends Application {
 			}
 		}
 		this.numDoubles = 0;
+	}
+	
+	public void endTurn() {
 		setNextPlayer(getNextPlayer());
 	}
 

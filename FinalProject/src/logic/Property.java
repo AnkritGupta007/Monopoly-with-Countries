@@ -24,6 +24,10 @@ public class Property extends BoardPiece {
 	private int calculateRent() {
 		return this.rent;
 	}
+	
+	public String getName() {
+		return this.name;
+	}
 
 	public int getRent() {
 		return rent;
