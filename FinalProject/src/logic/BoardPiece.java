@@ -9,5 +9,9 @@ package logic;
 public abstract class BoardPiece {
 	
 	String name;
+
+	public String getName() {
+		return name;
+	}
 	
 }

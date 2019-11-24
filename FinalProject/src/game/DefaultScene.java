@@ -5,7 +5,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -158,6 +161,15 @@ public class DefaultScene {
 		currentUserBox.getChildren().add(nextUserDisplay);
 		grid.add(currentUserBox, 1, 1);
 
+		// Current piece info
+		VBox currentPieceBox = new VBox(10);
+		Text currentPieceDisplay = new Text("You landed on: ");
+		Text currentPriceDisplay = new Text("");
+		currentPieceBox.setAlignment(Pos.TOP_LEFT);
+		currentPieceBox.getChildren().add(currentPieceDisplay);
+		currentPieceBox.getChildren().add(currentPriceDisplay);
+		grid.add(currentPieceBox, 2, 1);
+
 		HBox buyB = new HBox();
 		Button buy = new Button("Buy");
 		buyB.setAlignment(Pos.BOTTOM_CENTER);
@@ -180,6 +192,7 @@ public class DefaultScene {
 		GameManager gm = GameManager.getInstance();
 		currentUserDisplay.setText("Current Player: " + GameManager.getCurrentPlayer().getName());
 		nextUserDisplay.setText("Next Player: " + gm.getNextPlayer().getName());
+		currentBalanceDisplay.setText("Cash: " + GameManager.getCurrentPlayer().getBalance());
 		end.setDisable(true);
 		buy.setDisable(true);
 
@@ -187,21 +200,39 @@ public class DefaultScene {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				GameManager.getCurrentPlayer().buyProperty((Property)GameManager.getCurrentBoardSquare());
+				GameManager.getCurrentPlayer().buyProperty((Property) GameManager.getCurrentBoardSquare());
+				currentBalanceDisplay.setText("Cash: " + GameManager.getCurrentPlayer().getBalance());
+				buy.setDisable(true);
 			}
-			
+
 		});
-		
+
 		rollDice.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent arg0) {
 				GameManager gm = GameManager.getInstance();
 				boolean doubles = gm.executeTurn(GameManager.getCurrentPlayer());
-				if (GameManager.isBuyable()){
+				currentPieceDisplay.setText("You landed on: " + GameManager.getCurrentBoardSquare().getName());
+				if (GameManager.getCurrentBoardSquare() instanceof Property) {
+					Property prop = (Property) GameManager.getCurrentBoardSquare();
+					if (prop.isOwned()) {
+						currentPriceDisplay.setText("Property is owned by: " + prop.getOwner().getName());
+						if (!prop.getOwner().getName().equals(GameManager.getCurrentPlayer().getName())) {
+							Alert alert = new Alert(AlertType.INFORMATION, "Paid rent in amount of: " + prop.getRent(),
+									ButtonType.OK);
+							alert.showAndWait();
+						}
+						currentBalanceDisplay.setText("Cash: " + GameManager.getCurrentPlayer().getBalance());
+					} else {
+						currentPriceDisplay.setText("Property will cost: " + prop.getCost());
+					}
+				} else {
+					currentPriceDisplay.setText("Property cannot be owned.");
+				}
+				if (GameManager.isBuyable()) {
 					buy.setDisable(false);
 				}
-				System.out.println(doubles);
 				if (!doubles) {
 					rollDice.setDisable(true);
 					end.setDisable(false);
@@ -216,8 +247,11 @@ public class DefaultScene {
 			public void handle(ActionEvent arg0) {
 				GameManager gm = GameManager.getInstance();
 				gm.endTurn();
+				currentPieceDisplay.setText("You landed on: ");
+				currentPriceDisplay.setText("");
 				currentUserDisplay.setText("Current Player: " + GameManager.getCurrentPlayer().getName());
 				nextUserDisplay.setText("Next Player: " + gm.getNextPlayer().getName());
+				currentBalanceDisplay.setText("Cash: " + GameManager.getCurrentPlayer().getBalance());
 				rollDice.setDisable(false);
 				end.setDisable(true);
 				buy.setDisable(true);

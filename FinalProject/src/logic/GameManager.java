@@ -62,6 +62,10 @@ public class GameManager extends Application {
 				if (!prop.isOwned()) {
 					isBuyable = true;
 				} else {
+					//Pay rent
+					if (!prop.getOwner().getName().equals(p.getName())) {
+						p.setBalance(p.getBalance() - prop.getRent());
+					}
 					isBuyable = false;
 				}
 			}
