@@ -10,8 +10,7 @@ public class Player {
 	private boolean isInJail;
 	private boolean haveJailPass;
 	List<Property> ownedProperties;
-	
-	
+
 	public Player(String name, int balance) {
 		this.name = name;
 		this.balance = balance;
@@ -23,22 +22,19 @@ public class Player {
 	
 	public void setCurrentPropertyLocation(int currentPropertyLocation) {
 		this.currentPropertyLocation = currentPropertyLocation;
-		
-		
 	}
 	
 	public void buyProperty(Property p) {
 		this.ownedProperties.add(p);
 		this.balance=this.balance-p.getCost();
-		
+		p.setOwned(true);
+		p.setOwner(this);
+		System.out.println(this.name + " bought " + p.getName());
 	}
 	
 	public void payFine(int fine) {
 		this.balance=this.balance-fine;
 	}
-	
-	
-	
 
 	public String getName() {
 		return name;
@@ -59,8 +55,6 @@ public class Player {
 	public int getCurrentPropertyLocation() {
 		return currentPropertyLocation;
 	}
-
-
 
 	public boolean isInJail() {
 		return isInJail;

@@ -30,7 +30,7 @@ public class UserPropertyListScene {
 		tableView.getColumns().add(column2);
 		tableView.getColumns().add(column3);
 
-		List<Property> properties = GameManager.currentPlayer.getOwnedProperties();
+		List<Property> properties = GameManager.getCurrentPlayer().getOwnedProperties();
 		for(Property p : properties) {
 			tableView.getItems().add(p);
 		}

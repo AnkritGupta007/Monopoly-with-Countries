@@ -13,17 +13,18 @@ public class GameManager extends Application {
 	public final static int GO_PAY_AMOUNT = 200;
 	public static List<Player> uList = new ArrayList<Player>();
 	static GameManager gm = new GameManager();
-	public static Player currentPlayer;
+	static Player currentPlayer;
+	static BoardPiece currentBoardSquare;
+	static boolean isBuyable;
 
 	private static Stage primaryStage;
 
 	public static void main(String[] args) {
 		Player p1 = new Player("RJ", 500);
-		p1.addProperty((Property)board.pList.get(7));
 		Player p2 = new Player("Ankrit", 500);
 		uList.add(p1);
 		uList.add(p2);
-		
+
 		currentPlayer = uList.get(0);
 
 		launch(args);
@@ -31,7 +32,7 @@ public class GameManager extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		this.primaryStage = primaryStage;
+		GameManager.primaryStage = primaryStage;
 		primaryStage.setScene(DefaultScene.getScene());
 		primaryStage.show();
 	}
@@ -45,9 +46,9 @@ public class GameManager extends Application {
 		GameManager.primaryStage.setScene(scene);
 	}
 
-	public int numDoubles = 0;
+	int numDoubles = 0;
 
-	public void executeTurn(Player p) {
+	public boolean executeTurn(Player p) {
 		int[] dice = board.rollDice();
 		if (!p.isInJail()) {
 			int distance = dice[0] + dice[1];
@@ -55,26 +56,36 @@ public class GameManager extends Application {
 			if (passedGo) {
 				p.setBalance(p.getBalance() + GO_PAY_AMOUNT);
 			}
+			GameManager.setCurrentBoardSquare(Board.getInstance().getPieceByLocation(p.getCurrentPropertyLocation()));
+			if (currentBoardSquare instanceof Property) {
+				Property prop = (Property) currentBoardSquare;
+				if (!prop.isOwned()) {
+					isBuyable = true;
+				} else {
+					isBuyable = false;
+				}
+			}
 			if (dice[0] == dice[1]) {
 				numDoubles++;
 				if (numDoubles == 3) {
 					p.setInJail(true);
 					this.numDoubles = 0;
+					return false;
 				} else {
-					executeTurn(p);
+					return true;
 				}
 
 			}
-
 		} else {
 			if (dice[0] == dice[1]) {
 				p.setInJail(false);
 			}
 		}
-		this.numDoubles = 0;
+		return false;
 	}
-	
+
 	public void endTurn() {
+		this.numDoubles = 0;
 		setNextPlayer(getNextPlayer());
 	}
 
@@ -88,13 +99,33 @@ public class GameManager extends Application {
 		Player nextPlayer = uList.get(index);
 		return nextPlayer;
 	}
-	
+
 	public void setNextPlayer(Player p) {
 		currentPlayer = p;
 	}
 
 	public static GameManager getInstance() {
 		return gm;
+	}
+
+	public static Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public static void setCurrentPlayer(Player currentPlayer) {
+		GameManager.currentPlayer = currentPlayer;
+	}
+
+	public static BoardPiece getCurrentBoardSquare() {
+		return currentBoardSquare;
+	}
+
+	public static void setCurrentBoardSquare(BoardPiece currentBoardSquare) {
+		GameManager.currentBoardSquare = currentBoardSquare;
+	}
+	
+	public static boolean isBuyable() {
+		return isBuyable;
 	}
 
 }
