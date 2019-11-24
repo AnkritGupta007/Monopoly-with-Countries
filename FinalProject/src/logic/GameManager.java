@@ -65,6 +65,7 @@ public class GameManager extends Application {
 					//Pay rent
 					if (!prop.getOwner().getName().equals(p.getName())) {
 						p.setBalance(p.getBalance() - prop.getRent());
+						prop.getOwner().setBalance(prop.getOwner().getBalance() + prop.getRent());
 					}
 					isBuyable = false;
 				}

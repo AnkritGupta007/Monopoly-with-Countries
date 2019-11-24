@@ -219,7 +219,8 @@ public class DefaultScene {
 					if (prop.isOwned()) {
 						currentPriceDisplay.setText("Property is owned by: " + prop.getOwner().getName());
 						if (!prop.getOwner().getName().equals(GameManager.getCurrentPlayer().getName())) {
-							Alert alert = new Alert(AlertType.INFORMATION, "Paid rent in amount of: " + prop.getRent(),
+							Alert alert = new Alert(AlertType.INFORMATION,
+									"Paid " + prop.getOwner().getName() + " rent in amount of: " + prop.getRent(),
 									ButtonType.OK);
 							alert.showAndWait();
 						}
