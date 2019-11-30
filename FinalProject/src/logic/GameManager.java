@@ -8,7 +8,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class GameManager extends Application {
+public class GameManager  {
 	static Board board = Board.getInstance();
 	public final static int GO_PAY_AMOUNT = 200;
 	public static List<Player> uList = new ArrayList<Player>();
@@ -18,33 +18,29 @@ public class GameManager extends Application {
 	static boolean isBuyable;
 
 	private static Stage primaryStage;
-
-	public static void main(String[] args) {
-		Player p1 = new Player("RJ", 500);
-		Player p2 = new Player("Ankrit", 500);
-		uList.add(p1);
-		uList.add(p2);
-
-		currentPlayer = uList.get(0);
-
-		launch(args);
+	
+	public static void populatePlayers(List<String> players) {
+		for(String playersname:players) {
+			uList.add(new Player(playersname, 1500));
+		}
+		currentPlayer=uList.get(0);
 	}
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		GameManager.primaryStage = primaryStage;
-		primaryStage.setScene(DefaultScene.getScene());
-		primaryStage.show();
-	}
-
-	/**
-	 * Used to change to a different scene anywhere in the application.
-	 * 
-	 * @param scene The scene to change to.
-	 */
-	public static void changeScene(Scene scene) {
-		GameManager.primaryStage.setScene(scene);
-	}
+//	//@Override
+//	public void start(Stage primaryStage) throws Exception {
+//		GameManager.primaryStage = primaryStage;
+//		primaryStage.setScene(DefaultScene.getScene());
+//		primaryStage.show();
+//	}
+//
+//	/**
+//	 * Used to change to a different scene anywhere in the application.
+//	 * 
+//	 * @param scene The scene to change to.
+//	 */
+//	public static void changeScene(Scene scene) {
+//		GameManager.primaryStage.setScene(scene);
+//	}
 
 	int numDoubles = 0;
 
