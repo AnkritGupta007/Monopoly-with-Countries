@@ -38,7 +38,7 @@ public class SellConfirmationScene {
 
 			@Override
 			public void handle(ActionEvent event) {
-				GameManager.changeScene(UserPropertyListScene.getScene());
+				Main.changeScene(UserPropertyListScene.getScene());
 			}
 
 		});

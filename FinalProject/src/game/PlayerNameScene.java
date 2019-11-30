@@ -1,6 +1,8 @@
-package gui.scenes;
+package game;
 
-import gui.main.Main;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -8,12 +10,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import logic.GameManager;
 
 public class PlayerNameScene {
 
@@ -58,11 +60,28 @@ public class PlayerNameScene {
 		hbBtn.setAlignment(Pos.BOTTOM_CENTER);
 		hbBtn.getChildren().add(btn);
 		grid.add(hbBtn, 1, 5);
-
-		btn.setOnAction(new EventHandler<ActionEvent>() {
+		
+		List<String> playersName=new ArrayList<String>();
+		btn.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				Main.changeScene(LoginScene.getScene());
+				if(p1Box.getText()!="") {
+					playersName.add(p1Box.getText());
+				}
+				
+				if(p2Box.getText()!="") {
+					playersName.add(p2Box.getText());
+				}
+				if(p3Box.getText()!="") {
+					playersName.add(p3Box.getText());
+				}
+				
+				if(p4Box.getText()!="") {
+					playersName.add(p4Box.getText());
+				}
+				GameManager.populatePlayers(playersName);
+				Main.changeScene(DefaultScene.getScene());
+					
 			}
 		});
 

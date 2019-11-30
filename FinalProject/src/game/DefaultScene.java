@@ -150,7 +150,7 @@ public class DefaultScene {
 
 			@Override
 			public void handle(ActionEvent event) {
-				GameManager.changeScene(UserPropertyListScene.getScene());
+				Main.changeScene(UserPropertyListScene.getScene());
 
 			}
 		});
@@ -276,7 +276,7 @@ public class DefaultScene {
 				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
 
 		Scene scene = new Scene(bp, 790, 790);
-		scene.getStylesheets().add(DefaultScene.class.getResource("Style.css").toExternalForm());
+		//scene.getStylesheets().add(DefaultScene.class.getResource("Style.css").toExternalForm());
 
 		return scene;
 	}

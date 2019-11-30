@@ -39,7 +39,7 @@ public class UserPropertyListScene {
 		//NOT FINISHED OR WORKING, DOUBLE CLICK EXAMPLE
 		tableView.setOnMouseClicked((MouseEvent event) -> {
 			if(event.getButton().equals(MouseButton.PRIMARY)&& event.getClickCount() == 2) {
-				GameManager.changeScene(SellConfirmationScene.getScene());
+				Main.changeScene(SellConfirmationScene.getScene());
 			}
 		});
 		
