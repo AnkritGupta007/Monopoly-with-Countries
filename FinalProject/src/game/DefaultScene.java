@@ -231,6 +231,10 @@ public class DefaultScene {
 				} else {
 					currentPriceDisplay.setText("Property cannot be owned.");
 				}
+				if(doubles) {
+					Alert alert = new Alert(AlertType.INFORMATION,"You Got a Double\n Roll Again",ButtonType.OK);
+					alert.showAndWait();
+				}
 				if (GameManager.isBuyable()) {
 					buy.setDisable(false);
 				}

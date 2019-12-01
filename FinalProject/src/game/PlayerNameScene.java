@@ -65,18 +65,18 @@ public class PlayerNameScene {
 		btn.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				if(p1Box.getText()!="") {
+				if(!(p1Box.getText().equals(""))) {
 					playersName.add(p1Box.getText());
 				}
 				
-				if(p2Box.getText()!="") {
+				if(!(p2Box.getText().equals(""))) {
 					playersName.add(p2Box.getText());
 				}
-				if(p3Box.getText()!="") {
+				if(!(p3Box.getText().equals(""))) {
 					playersName.add(p3Box.getText());
 				}
 				
-				if(p4Box.getText()!="") {
+				if(!(p4Box.getText().equals(""))) {
 					playersName.add(p4Box.getText());
 				}
 				GameManager.populatePlayers(playersName);
