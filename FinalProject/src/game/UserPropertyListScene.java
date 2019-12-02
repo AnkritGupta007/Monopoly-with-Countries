@@ -1,20 +1,20 @@
 package game;
 
-import java.io.FileNotFoundException;
-import java.util.*;
-import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.*;
-import javafx.scene.control.Alert.*;
-import javafx.scene.layout.*;
+import java.util.List;
+
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import logic.GameManager;
-import logic.Player;
 import logic.Property;
-import javafx.scene.input.*;
 
 
 public class UserPropertyListScene {
-	@SuppressWarnings("restriction")
 	public static Scene getScene() {
 		TableView tableView = new TableView();
 		
@@ -39,7 +39,7 @@ public class UserPropertyListScene {
 		//NOT FINISHED OR WORKING, DOUBLE CLICK EXAMPLE
 		tableView.setOnMouseClicked((MouseEvent event) -> {
 			if(event.getButton().equals(MouseButton.PRIMARY)&& event.getClickCount() == 2) {
-				Main.changeScene(SellConfirmationScene.getScene());
+				
 			}
 		});
 		

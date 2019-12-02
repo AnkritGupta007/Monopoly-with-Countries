@@ -29,6 +29,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import logic.GameManager;
 import logic.Property;
 
@@ -150,8 +152,10 @@ public class DefaultScene {
 
 			@Override
 			public void handle(ActionEvent event) {
-				Main.changeScene(UserPropertyListScene.getScene());
-
+				Stage stage = new Stage();
+				stage.setScene(UserPropertyListScene.getScene());
+				stage.initModality(Modality.APPLICATION_MODAL);
+				stage.showAndWait();
 			}
 		});
 		currentUserBox.setAlignment(Pos.TOP_LEFT);
@@ -280,7 +284,7 @@ public class DefaultScene {
 				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
 
 		Scene scene = new Scene(bp, 790, 790);
-		//scene.getStylesheets().add(DefaultScene.class.getResource("Style.css").toExternalForm());
+		scene.getStylesheets().add(DefaultScene.class.getResource("Style.css").toExternalForm());
 
 		return scene;
 	}

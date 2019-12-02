@@ -30,7 +30,7 @@ public class Property extends BoardPiece {
 	}
 
 	public int getRent() {
-		return rent;
+		return this.calculateRent();
 	}
 
 	public void setRent(int rent) {
@@ -61,4 +61,7 @@ public class Property extends BoardPiece {
 		this.isOwned = isOwned;
 	}
 
+	public String toString() {
+		return this.name + ": " + this.cost + "," + this.rent;
+	}
 }

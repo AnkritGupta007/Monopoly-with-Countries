@@ -26,10 +26,11 @@ public class Player {
 	
 	public void buyProperty(Property p) {
 		this.ownedProperties.add(p);
-		this.balance=this.balance-p.getCost();
+		this.balance = this.balance - p.getCost();
 		p.setOwned(true);
 		p.setOwner(this);
-		System.out.println(this.name + " bought " + p.getName());
+		System.out.println(this.name + " bought " + p.getName() + " for " + p.getCost());
+		System.out.println(this.name+ " has " + this.balance + " left.");
 	}
 	
 	public void payFine(int fine) {

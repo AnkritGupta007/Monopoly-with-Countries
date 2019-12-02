@@ -32,7 +32,7 @@ public class Board {
 		Random r = new Random();
 		int d1 = r.nextInt(6) + 1;
 		int d2 = r.nextInt(6) + 1;
-		int[] ret = { d1, d2 };
+		int[] ret = { 1, 0 };
 		return ret;
 	}
 
@@ -45,6 +45,7 @@ public class Board {
 				pList.add(p);
 			} else if (line[0].equals("1")) {
 				ConcreteBoardPiece piece = new ConcreteBoardPiece(line[1]);
+				pList.add(piece);
 			}
 		}
 	}
@@ -53,10 +54,12 @@ public class Board {
 		int currentLocation = p.getCurrentPropertyLocation();
 		boolean passedGo = false;
 		int numPieces = pList.size();
-		if ((currentLocation + distance) > pList.size()) {
+		if ((currentLocation + distance) > pList.size() - 1) {
 			passedGo = true;
+			System.out.println(p.getName() + " PASSED GO");
 		}
 		p.setCurrentPropertyLocation((currentLocation + distance) % numPieces);
+		System.out.println(p.getCurrentPropertyLocation());
 		return passedGo;
 	}
 
