@@ -1,9 +1,10 @@
 package logic;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-	
+
 	private String name;
 	private int balance;
 	private int currentPropertyLocation;
@@ -19,22 +20,19 @@ public class Player {
 		this.haveJailPass = false;
 		this.ownedProperties = new ArrayList<Property>();
 	}
-	
-	public void setCurrentPropertyLocation(int currentPropertyLocation) {
-		this.currentPropertyLocation = currentPropertyLocation;
-	}
-	
+
+	/**
+	 * Buy a property
+	 * 
+	 * @param p - Property to be purchased
+	 */
 	public void buyProperty(Property p) {
 		this.ownedProperties.add(p);
 		this.balance = this.balance - p.getCost();
 		p.setOwned(true);
 		p.setOwner(this);
 		System.out.println(this.name + " bought " + p.getName() + " for " + p.getCost());
-		System.out.println(this.name+ " has " + this.balance + " left.");
-	}
-	
-	public void payFine(int fine) {
-		this.balance=this.balance-fine;
+		System.out.println(this.name + " has " + this.balance + " left.");
 	}
 
 	public String getName() {
@@ -80,9 +78,28 @@ public class Player {
 	public void setOwnedProperties(List<Property> ownedProperties) {
 		this.ownedProperties = ownedProperties;
 	}
-	
+
+	/**
+	 * Add a property to list of owned properties
+	 * 
+	 * @param p - Property to add
+	 */
 	public void addProperty(Property p) {
 		this.ownedProperties.add(p);
-	}	
+	}
+
+	/**
+	 * remove property from list of owned ones
+	 * 
+	 * @param p - Property to remove
+	 */
+	public void removeProperty(Property p) {
+		this.ownedProperties.remove(p);
+		p.setOwner(null);
+	}
+
+	public void setCurrentPropertyLocation(int currentPropertyLocation) {
+		this.currentPropertyLocation = currentPropertyLocation;
+	}
 
 }

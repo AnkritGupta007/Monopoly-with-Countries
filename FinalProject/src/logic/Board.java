@@ -1,4 +1,5 @@
 package logic;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,11 +24,15 @@ public class Board {
 			Alert alert = new Alert(AlertType.ERROR, "Error loading properties file", ButtonType.OK);
 			alert.showAndWait();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Simulate a dice roll in the game
+	 * 
+	 * @return Int array with two numbers representing dice values
+	 */
 	public int[] rollDice() {
 		Random r = new Random();
 		int d1 = r.nextInt(6) + 1;
@@ -36,11 +41,17 @@ public class Board {
 		return ret;
 	}
 
+	/**
+	 * Populates the board list with properties and non-property board pieces
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public void popluateBoard() throws FileNotFoundException, IOException {
 		Scanner sc = new Scanner(new File("properties.txt"));
-		while(sc.hasNextLine()) {
+		while (sc.hasNextLine()) {
 			String[] line = sc.nextLine().split(",");
-			if (line[0].equals("0")){
+			if (line[0].equals("0")) {
 				Property p = new Property(line[1], Integer.parseInt(line[2]), Integer.parseInt(line[3]));
 				pList.add(p);
 			} else if (line[0].equals("1")) {
@@ -50,6 +61,12 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Move the player on the board
+	 * @param p - Player to move
+	 * @param distance - Distance to move player (in board squares)
+	 * @return True if passed go, false otherwise
+	 */
 	public boolean movePlayer(Player p, int distance) {
 		int currentLocation = p.getCurrentPropertyLocation();
 		boolean passedGo = false;
@@ -62,6 +79,11 @@ public class Board {
 		return passedGo;
 	}
 
+	/**
+	 * Get a board piece from a board location
+	 * @param location - Location on board
+	 * @return - BoardPiece in the location specified
+	 */
 	public BoardPiece getPieceByLocation(int location) {
 		if (location < pList.size()) {
 			return pList.get(location);
@@ -70,44 +92,6 @@ public class Board {
 		}
 		return null;
 	}
-
-//	public void playerAction(Player p, int location, boolean buyProperty) {
-//
-//		Property currentProperty = (Property) pList.get(location);
-//		if (!p.getOwnedProperties().contains(currentProperty)) {
-//			if (location != 0) {
-//				if (!currentProperty.isOwned) {
-//					p.buyProperty(currentProperty);
-//				} else {
-//					p.setBalance(p.getBalance() - currentProperty.getRent());
-//				}
-//			}
-//		}
-//
-//	}
-	
-//	public void playerAction(Player p, int location, boolean buyProperty) {
-//		// if properties is owned by other player
-//		paying();
-//		
-//		
-//		//if properties is no one owned
-//		if(doBuying()) {
-//			buying();
-//		}
-//		
-//		
-//	}
-//	public boolean doBuying() {
-//		return false;
-//	}
-//	
-//	public void paying() {
-//		
-//	}
-//	public void buying() {
-//		p.buyProperty(currentProperty);
-//	}
 
 	public static Board getInstance() {
 		return board;

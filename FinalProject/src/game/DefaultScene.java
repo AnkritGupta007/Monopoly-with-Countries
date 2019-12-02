@@ -37,9 +37,9 @@ import logic.Property;
 public class DefaultScene {
 
 	/**
-	 * Generates the Default scene for the Banking System, which is the home page.
+	 * Creates main scene for monopoly game
 	 * 
-	 * @return The constructed default scene for the Banking System.
+	 * @return Main game scene
 	 */
 	public static Scene getScene() {
 
@@ -228,6 +228,7 @@ public class DefaultScene {
 								Alert alert = new Alert(AlertType.INFORMATION,
 										"Paid " + prop.getOwner().getName() + " rent in amount of: " + prop.getRent(),
 										ButtonType.OK);
+								alert.setHeaderText(null);
 								alert.showAndWait();
 							}
 						}
@@ -241,6 +242,7 @@ public class DefaultScene {
 				}
 				if (doubles) {
 					Alert alert = new Alert(AlertType.INFORMATION, "You Got a Double\n Roll Again", ButtonType.OK);
+					alert.setHeaderText(null);
 					alert.showAndWait();
 				}
 				if (GameManager.isBuyable()) {
@@ -271,13 +273,6 @@ public class DefaultScene {
 			}
 
 		});
-
-		// THIS MIGHT DO BETTER ON THE PROPERTIES LIST SCREEN
-		/*
-		 * HBox sellB = new HBox(); Button sell = new Button("Sell");
-		 * sellB.setAlignment(Pos.BOTTOM_CENTER); sellB.getChildren().add(sell);
-		 * grid.add(sellB, 4, 3);
-		 */
 
 		BorderPane bp = new BorderPane();
 		HBox hb = new HBox();

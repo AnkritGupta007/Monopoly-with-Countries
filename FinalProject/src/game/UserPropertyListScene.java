@@ -1,8 +1,12 @@
 package game;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -39,7 +43,19 @@ public class UserPropertyListScene {
 		//NOT FINISHED OR WORKING, DOUBLE CLICK EXAMPLE
 		tableView.setOnMouseClicked((MouseEvent event) -> {
 			if(event.getButton().equals(MouseButton.PRIMARY)&& event.getClickCount() == 2) {
-				
+				Property p = (Property)tableView.getSelectionModel().getSelectedItem();
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Confirmation Dialog");
+				alert.setHeaderText(null);
+				alert.setContentText("Are you sure you want to sell " + p.getName() + "?");
+
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.get() == ButtonType.OK){
+				   p.getOwner().setBalance(p.getOwner().getBalance() + p.getSellingPrice());
+				   p.getOwner().removeProperty(p);
+				} else {
+				    //Do stuff if user cancels
+				}
 			}
 		});
 		
