@@ -8,7 +8,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class GameManager  {
+public class GameManager {
 	static Board board = Board.getInstance();
 	public final static int GO_PAY_AMOUNT = 200;
 	public static List<Player> uList = new ArrayList<Player>();
@@ -18,12 +18,12 @@ public class GameManager  {
 	static boolean isBuyable;
 
 	private static Stage primaryStage;
-	
+
 	public static void populatePlayers(List<String> players) {
-		for(String playersname:players) {
+		for (String playersname : players) {
 			uList.add(new Player(playersname, 1500));
 		}
-		currentPlayer=uList.get(0);
+		currentPlayer = uList.get(0);
 	}
 
 //	//@Override
@@ -56,12 +56,22 @@ public class GameManager  {
 			if (currentBoardSquare instanceof Property) {
 				Property prop = (Property) currentBoardSquare;
 				if (!prop.isOwned()) {
-					isBuyable = true;
+					if (prop.getCost() <= p.getBalance()) {
+						isBuyable = true;
+					} else {
+						isBuyable = false;
+					}
 				} else {
-					//Pay rent
+					// Pay rent
 					if (!prop.getOwner().getName().equals(p.getName())) {
-						p.setBalance(p.getBalance() - prop.getRent());
-						prop.getOwner().setBalance(prop.getOwner().getBalance() + prop.getRent());
+						if (p.getBalance() - prop.getRent() > 0) {
+							p.setBalance(p.getBalance() - prop.getRent());
+							prop.getOwner().setBalance(prop.getOwner().getBalance() + prop.getRent());
+						} else {
+							endTurn();
+							uList.remove(p);
+							System.out.println("Removed " + p.getName() + " from game due to insufficient funds for rent");
+						}
 					}
 					isBuyable = false;
 				}
@@ -124,9 +134,13 @@ public class GameManager  {
 	public static void setCurrentBoardSquare(BoardPiece currentBoardSquare) {
 		GameManager.currentBoardSquare = currentBoardSquare;
 	}
-	
+
 	public static boolean isBuyable() {
 		return isBuyable;
+	}
+
+	public static void setBuyable(boolean value) {
+		isBuyable = value;
 	}
 
 }

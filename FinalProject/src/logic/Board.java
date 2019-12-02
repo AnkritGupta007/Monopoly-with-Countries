@@ -32,7 +32,7 @@ public class Board {
 		Random r = new Random();
 		int d1 = r.nextInt(6) + 1;
 		int d2 = r.nextInt(6) + 1;
-		int[] ret = { 1, 0 };
+		int[] ret = { d1, d2 };
 		return ret;
 	}
 
@@ -59,7 +59,6 @@ public class Board {
 			System.out.println(p.getName() + " PASSED GO");
 		}
 		p.setCurrentPropertyLocation((currentLocation + distance) % numPieces);
-		System.out.println(p.getCurrentPropertyLocation());
 		return passedGo;
 	}
 

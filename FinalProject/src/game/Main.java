@@ -15,6 +15,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Main.primaryStage = primaryStage;
+		primaryStage.setTitle("Monopoly Imitation - Ankrit, RJ, Dylan, & Taeho");
 		primaryStage.setScene(PlayerNameScene.getScene());
 		primaryStage.show();
 	}

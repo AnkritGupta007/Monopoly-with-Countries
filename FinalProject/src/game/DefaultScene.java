@@ -155,6 +155,7 @@ public class DefaultScene {
 				Stage stage = new Stage();
 				stage.setScene(UserPropertyListScene.getScene());
 				stage.initModality(Modality.APPLICATION_MODAL);
+				stage.setTitle(GameManager.getCurrentPlayer().getName() + "'s Properties");
 				stage.showAndWait();
 			}
 		});
@@ -223,10 +224,12 @@ public class DefaultScene {
 					if (prop.isOwned()) {
 						currentPriceDisplay.setText("Property is owned by: " + prop.getOwner().getName());
 						if (!prop.getOwner().getName().equals(GameManager.getCurrentPlayer().getName())) {
-							Alert alert = new Alert(AlertType.INFORMATION,
-									"Paid " + prop.getOwner().getName() + " rent in amount of: " + prop.getRent(),
-									ButtonType.OK);
-							alert.showAndWait();
+							if (!(prop.getRent() >= GameManager.getCurrentPlayer().getBalance())) {
+								Alert alert = new Alert(AlertType.INFORMATION,
+										"Paid " + prop.getOwner().getName() + " rent in amount of: " + prop.getRent(),
+										ButtonType.OK);
+								alert.showAndWait();
+							}
 						}
 						currentBalanceDisplay.setText("Cash: " + GameManager.getCurrentPlayer().getBalance());
 					} else {
@@ -234,9 +237,10 @@ public class DefaultScene {
 					}
 				} else {
 					currentPriceDisplay.setText("Property cannot be owned.");
+					GameManager.setBuyable(false);
 				}
-				if(doubles) {
-					Alert alert = new Alert(AlertType.INFORMATION,"You Got a Double\n Roll Again",ButtonType.OK);
+				if (doubles) {
+					Alert alert = new Alert(AlertType.INFORMATION, "You Got a Double\n Roll Again", ButtonType.OK);
 					alert.showAndWait();
 				}
 				if (GameManager.isBuyable()) {
