@@ -166,7 +166,7 @@ public class DefaultScene {
 		iv_i6.setFitHeight(150);
 		iv_i6.setFitWidth(150);
 		
-		Image i7 = new Image("file:monopoly_img/china.png"); 
+		Image i7 = new Image("file:monopoly_img/nepal.png"); 
 		ImageView iv_i7 = new ImageView(i7);
 		iv_i7.setFitHeight(150);
 		iv_i7.setFitWidth(150);
