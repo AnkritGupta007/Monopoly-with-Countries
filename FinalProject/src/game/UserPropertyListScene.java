@@ -54,8 +54,8 @@ public class UserPropertyListScene {
 				   p.getOwner().setBalance(p.getOwner().getBalance() + p.getSellingPrice());
 				   p.getOwner().removeProperty(p);
 				} else {
-				    //Do stuff if user cancels
-				}
+				   
+				} 
 			}
 		});
 		

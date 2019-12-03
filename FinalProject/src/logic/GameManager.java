@@ -24,6 +24,7 @@ public class GameManager {
 
 	/**
 	 * Populate the players into the player list
+	 * 
 	 * @param players - List of player names
 	 */
 	public static void populatePlayers(List<String> players) {
@@ -37,6 +38,7 @@ public class GameManager {
 
 	/**
 	 * Execute a turn on a certain player
+	 * 
 	 * @param p - The player whose turn it is
 	 * @return True if doubles are rolled, false if not
 	 */
@@ -64,10 +66,13 @@ public class GameManager {
 							p.setBalance(p.getBalance() - prop.getRent());
 							prop.getOwner().setBalance(prop.getOwner().getBalance() + prop.getRent());
 						} else {
-							endTurn();
+							Player next = getNextPlayer();
+							System.out.println("Next player is " + next.getName());
 							uList.remove(p);
 							System.out.println(
 									"Removed " + p.getName() + " from game due to insufficient funds for rent");
+							setNextPlayer(next);
+							System.out.println("The current player is " + currentPlayer.getName());
 						}
 					}
 					isBuyable = false;
@@ -102,6 +107,7 @@ public class GameManager {
 
 	/**
 	 * Get the next player in the list
+	 * 
 	 * @return Next player object in list
 	 */
 	public Player getNextPlayer() {
@@ -117,10 +123,20 @@ public class GameManager {
 
 	/**
 	 * Advance the current player by one
+	 * 
 	 * @param p
 	 */
 	public void setNextPlayer(Player p) {
 		currentPlayer = p;
+	}
+
+	/**
+	 * Helper function to get the number of active players in the game
+	 * 
+	 * @return Integer number of players
+	 */
+	public static int getNumPlayers() {
+		return uList.size();
 	}
 
 	public static GameManager getInstance() {

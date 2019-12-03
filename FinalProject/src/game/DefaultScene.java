@@ -32,6 +32,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.GameManager;
+import logic.Player;
 import logic.Property;
 
 public class DefaultScene {
@@ -217,19 +218,37 @@ public class DefaultScene {
 			@Override
 			public void handle(ActionEvent arg0) {
 				GameManager gm = GameManager.getInstance();
-				boolean doubles = gm.executeTurn(GameManager.getCurrentPlayer());
+				Player cp = GameManager.getCurrentPlayer();
+				boolean doubles = gm.executeTurn(cp);
+				boolean alreadyNext = false;
 				currentPieceDisplay.setText("You landed on: " + GameManager.getCurrentBoardSquare().getName());
 				if (GameManager.getCurrentBoardSquare() instanceof Property) {
 					Property prop = (Property) GameManager.getCurrentBoardSquare();
 					if (prop.isOwned()) {
 						currentPriceDisplay.setText("Property is owned by: " + prop.getOwner().getName());
-						if (!prop.getOwner().getName().equals(GameManager.getCurrentPlayer().getName())) {
-							if (!(prop.getRent() >= GameManager.getCurrentPlayer().getBalance())) {
+						if (!prop.getOwner().getName().equals(cp.getName())) {
+							if (!(prop.getRent() >= cp.getBalance())) {
 								Alert alert = new Alert(AlertType.INFORMATION,
 										"Paid " + prop.getOwner().getName() + " rent in amount of: " + prop.getRent(),
 										ButtonType.OK);
 								alert.setHeaderText(null);
 								alert.showAndWait();
+							} else {
+								Alert alert = new Alert(AlertType.INFORMATION, "Player has been removed due to inability to pay rent.", ButtonType.OK);
+								alert.setHeaderText(null);
+								alert.showAndWait();
+								currentPieceDisplay.setText("You landed on: ");
+								currentPriceDisplay.setText("");
+								currentUserDisplay.setText("Current Player: " + GameManager.getCurrentPlayer().getName());
+								nextUserDisplay.setText("Next Player: " + gm.getNextPlayer().getName());
+								currentBalanceDisplay.setText("Cash: " + GameManager.getCurrentPlayer().getBalance());
+								rollDice.setDisable(false);
+								end.setDisable(true);
+								buy.setDisable(true);
+								alreadyNext = true;
+								if (GameManager.getNumPlayers() == 1) {
+									Main.changeScene(PlayerWinScene.getScene());
+								}
 							}
 						}
 						currentBalanceDisplay.setText("Cash: " + GameManager.getCurrentPlayer().getBalance());
@@ -248,7 +267,7 @@ public class DefaultScene {
 				if (GameManager.isBuyable()) {
 					buy.setDisable(false);
 				}
-				if (!doubles) {
+				if (!doubles && !alreadyNext) {
 					rollDice.setDisable(true);
 					end.setDisable(false);
 				}
@@ -270,6 +289,9 @@ public class DefaultScene {
 				rollDice.setDisable(false);
 				end.setDisable(true);
 				buy.setDisable(true);
+				if (GameManager.getNumPlayers() == 1) {
+					Main.changeScene(PlayerWinScene.getScene());
+				}
 			}
 
 		});
