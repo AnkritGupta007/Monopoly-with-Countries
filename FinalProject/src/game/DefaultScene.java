@@ -135,14 +135,167 @@ public class DefaultScene {
 		grid.add(greenSpace3, 0, 2);
 		grid.add(yellowSpace3, 0, 1);
 		grid.add(orangeSpace3, 0, 0);
-
+		
+		Image i1 = new Image("file:monopoly_img/go.png");
+		ImageView iv_i1 = new ImageView(i1);
+		iv_i1.setFitHeight(150);
+		iv_i1.setFitWidth(150);
+		
+		Image i2 = new Image("file:monopoly_img/germany.png"); 
+		ImageView iv_i2 = new ImageView(i2);
+		iv_i2.setFitHeight(150);
+		iv_i2.setFitWidth(150);
+		
+		Image i3 = new Image("file:monopoly_img/spain.png"); 
+		ImageView iv_i3 = new ImageView(i3);
+		iv_i3.setFitHeight(150);
+		iv_i3.setFitWidth(150);
+		
+		Image i4 = new Image("file:monopoly_img/korea.png");
+		ImageView iv_i4 = new ImageView(i4);
+		iv_i4.setFitHeight(150);
+		iv_i4.setFitWidth(150);
+		
+		Image i5 = new Image("file:monopoly_img/jail.png");
+		ImageView iv_i5 = new ImageView(i5);
+		iv_i5.setFitHeight(150);
+		iv_i5.setFitWidth(150);
+		
+		Image i6 = new Image("file:monopoly_img/japan.png");
+		ImageView iv_i6 = new ImageView(i6);
+		iv_i6.setFitHeight(150);
+		iv_i6.setFitWidth(150);
+		
+		Image i7 = new Image("file:monopoly_img/china.png"); 
+		ImageView iv_i7 = new ImageView(i7);
+		iv_i7.setFitHeight(150);
+		iv_i7.setFitWidth(150);
+		
+		Image i8 = new Image("file:monopoly_img/australia.png"); 
+		ImageView iv_i8 = new ImageView(i8);
+		iv_i8.setFitHeight(150);
+		iv_i8.setFitWidth(150);
+		
+		Image i9 = new Image("file:monopoly_img/freeparking.png");
+		ImageView iv_i9 = new ImageView(i9);
+		iv_i9.setFitHeight(150);
+		iv_i9.setFitWidth(150);
+		
+		Image i10 = new Image("file:monopoly_img/brazil.png"); 
+		ImageView iv_i10 = new ImageView(i10);
+		iv_i10.setFitHeight(150);
+		iv_i10.setFitWidth(150);
+		
+		Image i11 = new Image("file:monopoly_img/southafrica.png");
+		ImageView iv_i11 = new ImageView(i11);
+		iv_i11.setFitHeight(150);
+		iv_i11.setFitWidth(150);
+		
+		Image i12 = new Image("file:monopoly_img/us.png");
+		ImageView iv_i12 = new ImageView(i12);
+		iv_i12.setFitHeight(150);
+		iv_i12.setFitWidth(150);
+		
+		Image i13 = new Image("file:monopoly_img/gotojail.png");
+		ImageView iv_i13 = new ImageView(i13);
+		iv_i13.setFitHeight(150);
+		iv_i13.setFitWidth(150);
+		
+		Image i14 = new Image("file:monopoly_img/france.png"); 
+		ImageView iv_i14 = new ImageView(i14);
+		iv_i14.setFitHeight(150);
+		iv_i14.setFitWidth(150);
+		
+		Image i15 = new Image("file:monopoly_img/switzerland.png");
+		ImageView iv_i15 = new ImageView(i15);
+		iv_i15.setFitHeight(150);
+		iv_i15.setFitWidth(150);
+		
+		Image i16 = new Image("file:monopoly_img/italy.png");
+		ImageView iv_i16 = new ImageView(i16);
+		iv_i16.setFitHeight(150);
+		iv_i16.setFitWidth(150);
+		
+		
 		VBox goBox = new VBox();
-		Text goText = new Text("GO!");
-		goText.setFill(Color.DARKRED);
-		goText.setFont(Font.font(36));
 		goBox.setAlignment(Pos.CENTER);
-		goBox.getChildren().add(goText);
+		goBox.getChildren().add(iv_i1);
 		grid.add(goBox, 4, 4);
+		
+		VBox i2Box = new VBox();
+		i2Box.setAlignment(Pos.CENTER);
+		i2Box.getChildren().add(iv_i2);
+		grid.add(i2Box, 3, 4);
+		
+		VBox i3Box = new VBox();
+		i3Box.setAlignment(Pos.CENTER);
+		i3Box.getChildren().add(iv_i3);
+		grid.add(i3Box, 2, 4);
+		
+		VBox i4Box = new VBox();
+		i4Box.setAlignment(Pos.CENTER);
+		i4Box.getChildren().add(iv_i4);
+		grid.add(i4Box, 1, 4);
+		
+		VBox i5Box = new VBox();
+		i5Box.setAlignment(Pos.CENTER);
+		i5Box.getChildren().add(iv_i5);
+		grid.add(i5Box, 0, 4);
+		
+		VBox i6Box = new VBox();
+		i6Box.setAlignment(Pos.CENTER);
+		i6Box.getChildren().add(iv_i6);
+		grid.add(i6Box, 0, 3);
+		
+		VBox i7Box = new VBox();
+		i7Box.setAlignment(Pos.CENTER);
+		i7Box.getChildren().add(iv_i7);
+		grid.add(i7Box, 0, 2);
+		
+		VBox i8Box = new VBox();
+		i8Box.setAlignment(Pos.CENTER);
+		i8Box.getChildren().add(iv_i8);
+		grid.add(i8Box, 0, 1);
+		
+		VBox i9Box = new VBox();
+		i9Box.setAlignment(Pos.CENTER);
+		i9Box.getChildren().add(iv_i9);
+		grid.add(i9Box, 0, 0);
+		
+		VBox i10Box = new VBox();
+		i10Box.setAlignment(Pos.CENTER);
+		i10Box.getChildren().add(iv_i10);
+		grid.add(i10Box, 1, 0);
+		
+		VBox i11Box = new VBox();
+		i11Box.setAlignment(Pos.CENTER);
+		i11Box.getChildren().add(iv_i11);
+		grid.add(i11Box, 2, 0);
+		
+		VBox i12Box = new VBox();
+		i12Box.setAlignment(Pos.CENTER);
+		i12Box.getChildren().add(iv_i12);
+		grid.add(i12Box, 3, 0);
+		
+		VBox i13Box = new VBox();
+		i13Box.setAlignment(Pos.CENTER);
+		i13Box.getChildren().add(iv_i13);
+		grid.add(i13Box, 4, 0);
+		
+		VBox i14Box = new VBox();
+		i14Box.setAlignment(Pos.CENTER);
+		i14Box.getChildren().add(iv_i14);
+		grid.add(i14Box, 4, 1);
+		
+		VBox i15Box = new VBox();
+		i15Box.setAlignment(Pos.CENTER);
+		i15Box.getChildren().add(iv_i15);
+		grid.add(i15Box, 4, 2);
+		
+		VBox i16Box = new VBox();
+		i16Box.setAlignment(Pos.CENTER);
+		i16Box.getChildren().add(iv_i16);
+		grid.add(i16Box, 4, 3);
 
 		VBox currentUserBox = new VBox(10);
 		Text currentUserDisplay = new Text("Current Player: ");
