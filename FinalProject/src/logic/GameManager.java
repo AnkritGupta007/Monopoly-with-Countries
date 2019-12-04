@@ -21,6 +21,11 @@ public class GameManager {
 	static Player currentPlayer;
 	static BoardPiece currentBoardSquare;
 	static boolean isBuyable;
+	
+	
+	public static Board getBoard() {
+		return board;
+	}
 
 	/**
 	 * Populate the players into the player list
@@ -28,8 +33,10 @@ public class GameManager {
 	 * @param players - List of player names
 	 */
 	public static void populatePlayers(List<String> players) {
+		int n  = 1;
 		for (String playersname : players) {
-			uList.add(new Player(playersname, INITIAL_PLAYER_BALANCE));
+			uList.add(new Player(playersname, INITIAL_PLAYER_BALANCE, n ));
+			n++;
 		}
 		currentPlayer = uList.get(0);
 	}

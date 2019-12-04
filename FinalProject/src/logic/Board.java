@@ -28,6 +28,35 @@ public class Board {
 		}
 	}
 
+	
+	public static int[] getAddFromIndex(int n) {
+		
+		int[] arr = new int[2];
+		switch(n) {
+		case 0: arr[0] = 4; arr[1] = 4; break;
+		case 1: arr[0] = 3; arr[1] = 4; break;
+		case 2: arr[0] = 2; arr[1] = 4; break;
+		case 3: arr[0] = 1; arr[1] = 4; break;
+		case 4: arr[0] = 0; arr[1] = 4; break;
+		case 5: arr[0] = 0; arr[1] = 3; break;
+		case 6: arr[0] = 0; arr[1] = 2; break;
+		case 7: arr[0] = 0; arr[1] = 1; break;
+		case 8: arr[0] = 0; arr[1] = 0; break;
+		case 9: arr[0] = 1; arr[1] = 0; break;
+		case 10: arr[0] = 2; arr[1] = 0; break;
+		case 11: arr[0] = 3; arr[1] = 0; break;
+		case 12: arr[0] = 4; arr[1] = 0; break;
+		case 13: arr[0] = 4; arr[1] = 1; break;
+		case 14: arr[0] = 4; arr[1] = 2; break;
+		case 15: arr[0] = 4; arr[1] = 3; break;
+		
+		
+		}
+		return arr;
+	}
+	
+	
+	
 	/**
 	 * Simulate a dice roll in the game
 	 * 

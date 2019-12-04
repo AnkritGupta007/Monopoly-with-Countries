@@ -11,14 +11,20 @@ public class Player {
 	private boolean isInJail;
 	private boolean haveJailPass;
 	List<Property> ownedProperties;
+	private int playerNumber;
 
-	public Player(String name, int balance) {
+	public Player(String name, int balance, int playerNumber) {
 		this.name = name;
 		this.balance = balance;
 		this.currentPropertyLocation = 0;
 		this.isInJail = false;
 		this.haveJailPass = false;
 		this.ownedProperties = new ArrayList<Property>();
+		this.playerNumber = playerNumber;
+	}
+	
+	public int getPlayerNumber() {
+		return playerNumber;
 	}
 
 	/**
