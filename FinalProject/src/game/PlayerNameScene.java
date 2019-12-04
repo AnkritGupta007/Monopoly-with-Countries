@@ -8,12 +8,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -68,36 +65,22 @@ public class PlayerNameScene {
 		btn.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				int numberOfPlayers= 0;
 				if(!(p1Box.getText().equals(""))) {
 					playersName.add(p1Box.getText());
-					numberOfPlayers++;
 				}
 				
 				if(!(p2Box.getText().equals(""))) {
 					playersName.add(p2Box.getText());
-					numberOfPlayers++;
 				}
 				if(!(p3Box.getText().equals(""))) {
 					playersName.add(p3Box.getText());
-					numberOfPlayers++;
 				}
 				
 				if(!(p4Box.getText().equals(""))) {
 					playersName.add(p4Box.getText());
-					numberOfPlayers++;
 				}
-				
-				if(numberOfPlayers>1) {
 				GameManager.populatePlayers(playersName);
 				Main.changeScene(DefaultScene.getScene());
-				}
-				else {
-					Alert alert = new Alert(AlertType.INFORMATION, "You need at least two players to play this game.", ButtonType.OK);
-					alert.setHeaderText(null);
-					alert.showAndWait();
-					Main.changeScene(PlayerNameScene.getScene());
-				}
 					
 			}
 		});

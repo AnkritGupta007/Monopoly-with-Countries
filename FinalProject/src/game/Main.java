@@ -17,6 +17,7 @@ public class Main extends Application {
 		Main.primaryStage = primaryStage;
 		primaryStage.setTitle("Monopoly Imitation - Ankrit, RJ, Dylan, & Taeho");
 		primaryStage.setScene(PlayerNameScene.getScene());
+		primaryStage.setResizable(true);
 		primaryStage.show();
 	}
 
