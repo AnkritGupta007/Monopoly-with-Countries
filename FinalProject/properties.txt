@@ -4,7 +4,7 @@
 0,Korea,150,30
 1,Jail
 0,Japan,200,40
-0,China,300,75
+0,Nepal,300,75
 0,Australia,400,100
 1,Free Parking
 0,Brazil,500,125
